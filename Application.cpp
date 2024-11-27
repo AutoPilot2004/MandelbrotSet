@@ -1,11 +1,11 @@
 #include "Application.h"
 
-#include <Mandelbrot_Set/Core.h>
-#include <Mandelbrot_Set/VertexArray.h>
-#include <Mandelbrot_Set/ShaderProgram.h>
-#include <Mandelbrot_Set/RenderState.h>
-#include <Mandelbrot_Set/Texture.h>
-#include <Mandelbrot_Set/Window.h>
+#include <Lib/Core.h>
+#include <Lib/VertexArray.h>
+#include <Lib/ShaderProgram.h>
+#include <Lib/RenderState.h>
+#include <Lib/Texture1D.h>
+#include <Lib/Window.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
@@ -28,7 +28,7 @@ auto Application::run(int width, int height, const char* title) -> std::expected
 		unsigned char* data = stbi_load("assets/textures/map_2.png", &w, &h, &ch, 0);
 		if (!data) std::unexpected<Error>({ 4, "Couldn't load image!" });
 
-		Lib::Texture tex(data, w);
+		Lib::Texture1D tex(data, w);
 		tex.bind_unit(0);
 
 		stbi_image_free(data);

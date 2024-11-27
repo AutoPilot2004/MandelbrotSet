@@ -1,10 +1,10 @@
-#include "Texture.h"
+#include "Texture1D.h"
 
 #include <glad/glad.h>
 
 namespace Lib
 {
-	Texture::Texture(const void* data, std::uint16_t width) noexcept
+	Texture1D::Texture1D(const void* data, std::uint16_t width) noexcept
 	{
 		glCreateTextures(GL_TEXTURE_1D, 1, &m_id);
 
@@ -18,17 +18,17 @@ namespace Lib
 		glGenerateTextureMipmap(m_id);
 	}
 
-	Texture::~Texture()
+	Texture1D::~Texture1D()
 	{
 		if (m_id) glDeleteTextures(1, &m_id);
 	}
 
-	void Texture::bind() const
+	void Texture1D::bind() const
 	{
 		glBindTexture(GL_TEXTURE_1D, m_id);
 	}
 
-	void Texture::bind_unit(uint32_t unit) const
+	void Texture1D::bind_unit(uint32_t unit) const
 	{
 		glBindTextureUnit(unit, m_id);
 	}

@@ -6,11 +6,11 @@
 
 namespace Lib
 {
-	class Texture : public GLObject
+	class Texture1D : public GLObject
 	{
 	public:
-		Texture(const void* data, uint16_t width) noexcept;
-		~Texture();
+		Texture1D(const void* data, uint16_t width) noexcept;
+		~Texture1D();
 
 	public:
 		void bind() const override;

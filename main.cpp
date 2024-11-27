@@ -1,4 +1,4 @@
-﻿#include <Mandelbrot_Set/Core.h>
+﻿#include <Lib/Core.h>
 
 #include "Application.h"
 

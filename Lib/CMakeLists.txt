@@ -12,7 +12,7 @@ add_library(
     "ShaderProgram.cpp"
     "VertexArray.cpp"
     "RenderState.cpp"
-    "Texture.cpp"
+    "Texture1D.cpp"
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE glfw)
 target_include_directories(${PROJECT_NAME} PRIVATE "vendor/glad/include")
