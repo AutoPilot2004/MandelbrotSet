@@ -9,18 +9,18 @@
 
 namespace Lib
 {
-	bool init()
+	std::expected<void, CoreError> init()
 	{
-		if (!glfwInit()) return false;
+		if (!glfwInit()) return std::unexpected(CoreError::INIT_FAIL);
 
 		auto tmpWin = WindowSystem::Window::create(1, 1, "", false);
-		if (!tmpWin) return false;
+		if (!tmpWin) return std::unexpected(CoreError::INIT_FAIL);
 
 		tmpWin->make_context_current();
 
-		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) return false;
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) return std::unexpected(CoreError::INIT_FAIL);
 
-		return true;
+		return {};
 	}
 
 	void destroy()
@@ -28,13 +28,13 @@ namespace Lib
 		glfwTerminate();
 	}
 
-	void fatal_error(const char* message, int errorCode)
+	void fatal_error(const char* message)
 	{
 		std::cout << message << std::endl;
 		destroy();
 		std::cout << "Press enter to exit...";
 		std::cin.get();
-		std::exit(errorCode);
+		std::exit(EXIT_FAILURE);
 	}
 
 	double get_current_time()

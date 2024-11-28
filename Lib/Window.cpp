@@ -28,7 +28,7 @@ namespace Lib
 			if (m_handle) glfwDestroyWindow(m_handle);
 		}
 
-		std::expected<Window, Error> Window::create(int width, int height, const char* title, bool visible) noexcept
+		std::expected<Window, Window::Error> Window::create(int width, int height, const char* title, bool visible) noexcept
 		{
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 			glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
@@ -36,7 +36,7 @@ namespace Lib
 			glfwWindowHint(GLFW_VISIBLE, visible);
 
 			auto* handle = glfwCreateWindow(width, height, title, nullptr, nullptr);
-			if (!handle) return std::unexpected(Error::WINDOW_CREATION_FAILED);
+			if (!handle) return std::unexpected(Error::CREATION_FAILED);
 
 			return expected_from_invocable<Window, Error>([=]() {
 				return Window(handle);

@@ -60,11 +60,11 @@ namespace Lib
 		if (m_id) glDeleteProgram(m_id);
 	}
 
-	std::expected<ShaderProgram, Error> ShaderProgram::create(const char* vertPath, const char* fragPath) noexcept
+	std::expected<ShaderProgram, ShaderProgram::Error> ShaderProgram::create(const char* vertPath, const char* fragPath) noexcept
 	{
 		GLuint programId = create_program(vertPath, fragPath);
 
-		if (programId == 0) return std::unexpected(Error::SHADER_CREATION_FAILED);
+		if (programId == 0) return std::unexpected(Error::CREATION_FAILED);
 
 		return expected_from_invocable<ShaderProgram, Error>([=]() {
 			return ShaderProgram(programId);

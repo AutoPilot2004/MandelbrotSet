@@ -11,16 +11,17 @@ namespace Lib
 {
 	namespace WindowSystem
 	{
-		enum class Error
-		{
-			WINDOW_CREATION_FAILED
-		};
-
 		using WindowCursorCallback    = std::function<void(double, double)>;
 		using FramebufferSizeCallback = std::function<void(int, int)>;
 
 		class Window
 		{
+		public:
+			enum class Error
+			{
+				CREATION_FAILED
+			};
+
 		private:
 			Window(GLFWwindow* handle) noexcept;
 

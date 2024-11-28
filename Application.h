@@ -1,14 +1,9 @@
 #pragma once
 
-#include <expected>
-
-namespace Application
+struct Application
 {
-	struct Error
-	{
-		int code;
-		const char* msg;
-	};
+	Application();
+	~Application();
 
-	auto run(int width, int height, const char* title) -> std::expected<int, Error>;
-}
+	void run(int width, int height, const char* title);
+};

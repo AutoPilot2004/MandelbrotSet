@@ -2,23 +2,31 @@
 
 #include <glad/glad.h>
 
-static GLbitfield bufferbit_native_to_gl(Lib::Renderer::BufferBitField mask)
+namespace
 {
-	GLbitfield bitfield = 0;
+	bool bufferbit_check(Lib::Renderer::BufferBit mask, Lib::Renderer::BufferBit value)
+	{
+		return (mask & value) == value;
+	}
 
-	if (mask & Lib::Renderer::BufferBit::COLOR_BUFFER_BIT)
-		bitfield |= GL_COLOR_BUFFER_BIT;
-	if (mask & Lib::Renderer::BufferBit::DEPTH_BUFFER_BIT)
-		bitfield |= GL_DEPTH_BUFFER_BIT;
+	GLbitfield bufferbit_native_to_gl(Lib::Renderer::BufferBit mask)
+	{
+		GLbitfield bitfield = 0;
 
-	return bitfield;
+		if (bufferbit_check(mask, Lib::Renderer::BufferBit::COLOR_BUFFER_BIT))
+			bitfield |= GL_COLOR_BUFFER_BIT;
+		if (bufferbit_check(mask, Lib::Renderer::BufferBit::DEPTH_BUFFER_BIT))
+			bitfield |= GL_DEPTH_BUFFER_BIT;
+
+		return bitfield;
+	}
 }
 
 namespace Lib
 {
 	namespace Renderer
 	{
-		void clear(BufferBitField mask)
+		void clear(BufferBit mask)
 		{
 			glClear(bufferbit_native_to_gl(mask));
 		}

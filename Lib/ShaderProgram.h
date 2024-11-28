@@ -6,13 +6,14 @@
 
 namespace Lib
 {
-	enum class Error
-	{
-		SHADER_CREATION_FAILED
-	};
-
 	class ShaderProgram : public GLObject
 	{
+	public:
+		enum class Error
+		{
+			CREATION_FAILED
+		};
+
 	private:
 		ShaderProgram(uint32_t id) noexcept;
 

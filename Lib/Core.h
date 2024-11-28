@@ -4,10 +4,15 @@
 
 namespace Lib
 {
-	bool init();
+	enum class CoreError
+	{
+		INIT_FAIL
+	};
+
+	std::expected<void, CoreError> init();
 	void destroy();
 
-	[[noreturn]] void fatal_error(const char* message, int errorCode);
+	[[noreturn]] void fatal_error(const char* message);
 
 	double get_current_time();
 
