@@ -11,7 +11,7 @@ add_library(
     "Core.cpp"
     "ShaderProgram.cpp"
     "VertexArray.cpp"
-    "RenderState.cpp"
+    "Renderer.cpp"
     "Texture1D.cpp"
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE glfw)

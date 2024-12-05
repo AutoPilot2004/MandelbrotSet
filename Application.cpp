@@ -3,7 +3,7 @@
 #include <Lib/Core.h>
 #include <Lib/VertexArray.h>
 #include <Lib/ShaderProgram.h>
-#include <Lib/RenderState.h>
+#include <Lib/Renderer.h>
 #include <Lib/Texture1D.h>
 #include <Lib/Window.h>
 
@@ -61,7 +61,7 @@ void Application::run(int width, int height, const char* title)
 			prevYPos = yPos;
 
 			xPos = x;
-			yPos = 1000.0 - y;
+			yPos = height - y;
 
 			xCoord += ((xPos - prevXPos) / zoom);
 			yCoord += ((yPos - prevYPos) / zoom);
@@ -71,9 +71,9 @@ void Application::run(int width, int height, const char* title)
 		}
 	);
 
-	window->set_framebuffer_size_callback([&](int width, int height)
+	window->set_framebuffer_size_callback([&](int w, int h)
 		{
-			Lib::Renderer::set_viewport(0, 0, width, height);
+			Lib::Renderer::set_viewport(0, 0, width = w, height = h);
 		}
 	);
 
